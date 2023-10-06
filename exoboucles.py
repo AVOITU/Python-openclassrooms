@@ -1,17 +1,13 @@
 def saisie_nombres():
   while True:
     try:
-      print(
-        "Saisisez une série de chiffres entier séparés par des  virgules et ne mettre aucun espace, par exemple 1,2,3,4"
-      )
+      print("Saisisez une série de chiffres entier séparés par des  virgules et ne mettre aucun espace, par exemple 1,2,3,4")
       saisie = input()
       #crée une liste et la convertit en prévision de son utilisation dans les calculs
       nombres = [int(nombre) for nombre in saisie.split(',')]
       return nombres
     except ValueError:
-      print((
-        "Erreur : veuillez entrer des chiffres entiers valides avec la virgule comme séparateur"
-      ))
+      print(("Erreur : veuillez entrer des chiffres entiers valides avec la virgule comme séparateur"))
 
 
 def informations_mathématiques(nombres):
