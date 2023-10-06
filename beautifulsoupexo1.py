@@ -1,7 +1,9 @@
 import re
+#serve after for search into the html code
 from bs4 import BeautifulSoup
 
 def soup_assignations():
+#Obtains the BeautifulSoup object, the title, and the content of the h1 tag.
   with open("index.html", 'r') as file:
     soup = BeautifulSoup(file, 'html.parser')
 
@@ -13,14 +15,17 @@ def soup_assignations():
   return soup
 
 def product_lists(soup):
+  #create a list of products found on the website
   product_class = soup.find_all('h2')
   product_list = []
   for product in product_class:
+  #normal loop to obtain a list
     product_list.append(product.string)
 
   print(product_list)
   
 def price_lists(soup):
+  #Creates a list that contains only the price values from all the p tags.
   price_class = soup.find_all('p')
   euro_list = []
   dollar_list=[]
@@ -29,6 +34,7 @@ def price_lists(soup):
     result=re.search(r'\b\d+\b', price_sentence)
     if result:
       euro_list.append(f"{result.group()}€")
+      #create a new list with dollar price
       dollar_price=int(result.group())*1.2
       dollar_list.append(f"{dollar_price}$")
 
@@ -36,6 +42,7 @@ def price_lists(soup):
   print(dollar_list)
 
 def description_lists(soup):
+  #Creates a list that contains only the elements of product descriptions from all the p tags.
   description_class = soup.find_all('p')
   description_list = []
   for description in description_class:
